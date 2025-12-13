@@ -10,10 +10,15 @@
 
 <style>
 :root {
-  --primary: #111;        /* donker voor tekst/knoppen */
-  --secondary: #D4AF37;   /* goud accenten */
-  --background: #f6f2ed;  /* licht beige */
+  --primary: #111;
+  --secondary: #D4AF37;
+  --background: #f6f2ed;
   --card-bg: #fff;
+}
+
+/* Scroll padding voor sticky menu */
+html {
+  scroll-padding-top: 70px; /* hoogte van nav */
 }
 
 /* Body */
@@ -223,7 +228,7 @@ footer {
     top: 60px;
     left: 0;
     right: 0;
-    background-color: rgba(246, 242, 237, 0.95);
+    background-color: rgba(246, 242, 237,0.95);
     flex-direction: column;
     gap: 20px;
     padding: 20px;
@@ -258,7 +263,7 @@ footer {
   </div>
 </nav>
 
-<!-- Header Banner -->
+<!-- Header -->
 <header>
   <div>
     <h1>Pure Cadeau Box</h1>
@@ -307,13 +312,10 @@ footer {
   <form id="order-form" style="display:flex; flex-direction:column; gap:15px; max-width:500px; margin:auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.05);">
     <label for="name">Naam:</label>
     <input type="text" id="name" name="name" required>
-
     <label for="email">E-mail:</label>
     <input type="email" id="email" name="email" required>
-
     <label for="phone">Telefoonnummer:</label>
     <input type="tel" id="phone" name="phone" required>
-
     <label for="product">Kies een cadeaubox:</label>
     <select id="product" name="product" required>
       <option value="">-- Selecteer een box --</option>
@@ -321,10 +323,8 @@ footer {
       <option value="Pure Love Box">Pure Love Box (€34,95)</option>
       <option value="Pure Care Box">Pure Care Box (€24,95)</option>
     </select>
-
     <label for="message">Eventueel bericht / kaartje:</label>
     <textarea id="message" name="message" rows="3"></textarea>
-
     <button type="submit" class="btn">Bestel</button>
   </form>
 </section>
@@ -351,12 +351,31 @@ footer {
 </footer>
 
 <script>
+// Mobiele menu toggle
 const menuToggle = document.getElementById('mobile-menu');
 const navLinks = document.getElementById('nav-links');
 menuToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
+// Scroll met offset voor sticky menu en sluit menu
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').substring(1);
+    const targetSection = document.getElementById(targetId);
+    const offset = 70; // hoogte sticky menu
+    const bodyRect = document.body.getBoundingClientRect().top;
+    const sectionRect = targetSection.getBoundingClientRect().top;
+    const scrollPos = sectionRect - bodyRect - offset;
+    window.scrollTo({ top: scrollPos, behavior: 'smooth' });
+
+    // sluit menu op mobiel
+    navLinks.classList.remove('active');
+  });
+});
+
+// Bestelformulier via WhatsApp
 const form = document.getElementById('order-form');
 form.addEventListener('submit', function(e) {
   e.preventDefault();
@@ -365,7 +384,6 @@ form.addEventListener('submit', function(e) {
   const phone = document.getElementById('phone').value;
   const product = document.getElementById('product').value;
   const message = document.getElementById('message').value;
-
   const text = `Bestelling:%0ANaam: ${name}%0AEmail: ${email}%0ATelefoon: ${phone}%0AProduct: ${product}%0ABericht: ${message}`;
   const whatsappURL = `https://wa.me/31600000000?text=${text}`;
   window.open(whatsappURL, '_blank');
