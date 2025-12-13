@@ -1,89 +1,135 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pure Cadeau Box</title>
-<style>
-body {
-margin: 0;
-font-family: 'Arial', sans-serif;
-background-color: #f6f2ed;
-color: #111;
-}
-header {
-padding: 40px 20px;
-text-align: center;
-background-color: #f6f2ed;
-}
-header h1 {
-font-size: 2.2rem;
-margin-bottom: 10px;
-}
-header p {
-font-size: 1.1rem;
-margin-bottom: 20px;
-}
-.btn {
-display: inline-block;
-padding: 12px 24px;
-border: 1px solid #111;
-text-decoration: none;
-color: #111;
-border-radius: 30px;
-font-size: 0.95rem;
-}
-section {
-padding: 60px 20px;
-max-width: 1100px;
-margin: auto;
-}
-.products {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 30px;
-}
-.card {
-background: #fff;
-border-radius: 16px;
-padding: 20px;
-box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-}
-.card img {
-width: 100%;
-border-radius: 12px;
-margin-bottom: 15px;
-}
-.price {
-font-weight: bold;
-margin: 10px 0;
-}
-footer {
-text-align: center;
-padding: 30px 20px;
-font-size: 0.9rem;
-background: #eee;
-}
-@media (max-width: 600px) {
-header h1 { font-size: 1.8rem; }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pure Cadeau Box</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f6f2ed;
+      color: #111;
+    }
+    header {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #f6f2ed;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border: 1px solid #111;
+      text-decoration: none;
+      color: #111;
+      border-radius: 30px;
+      font-size: 0.95rem;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    .price {
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      background: #eee;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+    }
+  </style>
 </head>
 <body>
 
-
 <header>
-<h1>Pure Cadeau Box</h1>
-<p>Pure cadeaumomenten, met zorg samengesteld</p>
-<a href="#producten" class="btn">Bekijk cadeauboxen</a>
+  <h1>Pure Cadeau Box</h1>
+  <p>Pure cadeaumomenten, met zorg samengesteld</p>
+  <a href="#producten" class="btn">Bekijk cadeauboxen</a>
 </header>
 
-
 <section id="producten">
-<h2>Onze Cadeauboxen</h2>
-<div class="products">
+  <h2>Onze Cadeauboxen</h2>
+  <div class="products">
 
+    <div class="card">
+      <img src="https://via.placeholder.com/400x300" alt="Pure Relax Box">
+      <h3>Pure Relax Box</h3>
+      <p>Een moment van rust in een doos. Perfect om even te ontspannen.</p>
+      <div class="price">€29,95</div>
+      <a class="btn" href="https://wa.me/31600000000">Bestel via WhatsApp</a>
+    </div>
 
-<div class="card">
-<img src="https://via.placeholder.com/400x300" alt="Pure Relax Box">
-<h3>Pure Relax Box</h3>
+    <div class="card">
+      <img src="https://via.placeholder.com/400x300" alt="Pure Love Box">
+      <h3>Pure Love Box</h3>
+      <p>Een liefdevol cadeau voor een verjaardag, bedankje of zomaar.</p>
+      <div class="price">€34,95</div>
+      <a class="btn" href="https://wa.me/31600000000">Bestel via WhatsApp</a>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/400x300" alt="Pure Care Box">
+      <h3>Pure Care Box</h3>
+      <p>Een attent cadeau om iemand te laten weten dat je aan hen denkt.</p>
+      <div class="price">€24,95</div>
+      <a class="btn" href="https://wa.me/31600000000">Bestel via WhatsApp</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="over-ons">
+  <h2>Over ons</h2>
+  <p>Pure Cadeaubox is ontstaan vanuit de liefde voor geven. Wij geloven dat een klein gebaar een groot verschil kan maken.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Bestel via het formulier of stuur ons een WhatsApp-bericht.</p>
+  <p>E-mail: info@purecadeaubox.nl</p>
+</section>
+
+<section id="faq">
+  <h2>Veelgestelde vragen</h2>
+  <p><strong>Hoe lang duurt de levering?</strong><br>1–3 werkdagen.</p>
+  <p><strong>Kan ik een kaartje toevoegen?</strong><br>Ja, gratis.</p>
+  <p><strong>Is het cadeau direct verzendbaar?</strong><br>Ja, zolang op voorraad.</p>
+  <p><strong>Kan ik een box personaliseren?</strong><br>Ja, neem contact met ons op.</p>
+</section>
+
+<footer>
+  © 2025 Pure Cadeau Box
+</footer>
+
+</body>
+</html>
