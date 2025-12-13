@@ -1,203 +1,245 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pure Cadeau Box</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pure Cadeau Box</title>
 
-  <!-- Google Fonts: Playfair Display en Lora -->
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-  <style>
-    /* Algemene body */
-    body {
-      margin: 0;
-      font-family: 'Lora', serif;
-      background-color: #f6f2ed;
-      color: #111;
-    }
+<style>
+:root {
+  --primary: #111;        /* donker voor tekst/knoppen */
+  --secondary: #D4AF37;   /* goud accenten */
+  --background: #f6f2ed;  /* licht beige */
+  --card-bg: #fff;
+}
 
-    /* Titels */
-    h1, h2, h3, h4, h5 {
-      font-family: 'Playfair Display', serif;
-    }
+/* Body */
+body {
+  margin: 0;
+  font-family: 'Lora', serif;
+  background-color: var(--background);
+  color: var(--primary);
+  line-height: 1.7;
+}
 
-    /* Navigatie */
-    nav {
-      background-color: rgba(246, 242, 237, 0.95);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .nav-container {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 40px;
-    }
-    .nav-links li a {
-      font-family: 'Lora', serif;
-      font-size: 1rem;
-      text-decoration: none;
-      color: #111;
-      font-weight: 600;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    .nav-links li a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: #111;
-      transition: width 0.3s ease;
-    }
-    .nav-links li a:hover::after {
-      width: 100%;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
+/* Titels */
+h1,h2,h3,h4,h5 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
+}
 
-    /* Header */
-    header {
-      padding: 40px 20px;
-      text-align: center;
-      background-color: #f6f2ed;
-    }
-    header div h1 {
-      font-size: 2.8rem;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-    }
-    header div p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
+/* Navigatie */
+nav {
+  background-color: rgba(246,242,237,0.95);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.nav-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+.nav-links li a {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--secondary);
+  transition: width 0.3s ease;
+}
+.nav-links li a:hover::after {
+  width: 100%;
+}
+.nav-links li a:hover {
+  color: var(--secondary);
+}
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
 
-    /* Knoppen */
-    .btn {
-      display: inline-block;
-      padding: 14px 28px;
-      border: 1px solid #111;
-      text-decoration: none;
-      color: #111;
-      border-radius: 40px;
-      font-size: 1rem;
-      font-family: 'Lora', serif;
-      background-color: #fff;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn:hover {
-      color: #fff;
-      background-color: #111;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    }
+/* Header */
+header {
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  height: 500px;
+  background-image: url('images/Banner-Pure-cadeau-box.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header div {
+  background-color: rgba(246,242,237,0.7);
+  padding: 20px 40px;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+}
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+header div h1 {
+  font-size: 2.8rem;
+}
+header div p {
+  font-size: 1.2rem;
+}
 
-    /* Secties */
-    section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+/* Knoppen */
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border: 1px solid var(--primary);
+  text-decoration: none;
+  color: var(--primary);
+  border-radius: 40px;
+  font-size: 1rem;
+  font-family: 'Lora', serif;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn:hover {
+  color: #fff;
+  background-color: var(--primary);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--secondary);
+  opacity: 0.2;
+  transition: width 0.4s ease;
+  border-radius: 40px;
+}
+.btn:hover::after {
+  width: 100%;
+}
 
-    /* Producten */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    }
-    .card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 15px;
-    }
-    .price {
-      font-weight: bold;
-      margin: 10px 0;
-    }
+/* Secties */
+section {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
 
-    /* Formulier */
-    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
-      font-family: 'Lora', serif;
-      font-size: 1rem;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      transition: all 0.3s ease;
-    }
-    input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, select:focus, textarea:focus {
-      border-color: #111;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      outline: none;
-    }
+/* Producten */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+.card:hover img {
+  transform: scale(1.05);
+}
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.9rem;
-      background: #eee;
-    }
+/* Formulier */
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  outline: none;
+}
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background-color: rgba(246, 242, 237, 0.95);
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-        display: none;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
-    @media (max-width: 600px) {
-      header div h1 { font-size: 1.8rem; }
-    }
-  </style>
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 0.9rem;
+  background: #eee;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: rgba(246, 242, 237, 0.95);
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    display: none;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+@media (max-width: 600px) {
+  header div h1 { font-size: 1.8rem; }
+}
+</style>
 </head>
 <body>
 
@@ -217,24 +259,8 @@
 </nav>
 
 <!-- Header Banner -->
-<header style="
-  position: relative;
-  height: 500px;
-  background-image: url('images/Banner-Pure-cadeau-box.jpg');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #111;
-">
-  <div style="
-    background-color: rgba(246, 242, 237, 0.7);
-    padding: 20px 40px;
-    border-radius: 12px;
-  ">
+<header>
+  <div>
     <h1>Pure Cadeau Box</h1>
     <p>Pure cadeaumomenten, met zorg samengesteld</p>
     <a href="#producten" class="btn">Bekijk cadeauboxen</a>
@@ -278,17 +304,7 @@
 <!-- Bestelformulier -->
 <section id="bestellen">
   <h2>Bestelformulier</h2>
-  <form id="order-form" style="
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
-    margin: auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  ">
+  <form id="order-form" style="display:flex; flex-direction:column; gap:15px; max-width:500px; margin:auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.05);">
     <label for="name">Naam:</label>
     <input type="text" id="name" name="name" required>
 
@@ -334,7 +350,6 @@
   © 2025 Pure Cadeau Box
 </footer>
 
-<!-- Scripts -->
 <script>
 const menuToggle = document.getElementById('mobile-menu');
 const navLinks = document.getElementById('nav-links');
