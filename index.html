@@ -12,25 +12,43 @@
       color: #111;
     }
     nav {
+      background-color: rgba(246, 242, 237, 0.95);
       position: sticky;
       top: 0;
-      background-color: rgba(246, 242, 237, 0.95);
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 15px 0;
       z-index: 1000;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    nav a {
+    .nav-container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+    .nav-links li a {
       text-decoration: none;
       color: #111;
       font-weight: 600;
       transition: color 0.3s ease;
     }
-    nav a:hover {
+    .nav-links li a:hover {
       color: #000;
       text-decoration: underline;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
     }
     header {
       padding: 40px 20px;
@@ -92,22 +110,43 @@
       font-size: 0.9rem;
       background: #eee;
     }
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: rgba(246, 242, 237, 0.95);
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        display: none;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
     @media (max-width: 600px) {
       header h1 { font-size: 1.8rem; }
-      nav {
-        flex-direction: column;
-        gap: 10px;
-      }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="#producten">Producten</a>
-  <a href="#over-ons">Over ons</a>
-  <a href="#contact">Contact</a>
-  <a href="#faq">Veelgestelde vragen</a>
+  <div class="nav-container">
+    <div class="logo">Pure Cadeau Box</div>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#producten">Producten</a></li>
+      <li><a href="#over-ons">Over ons</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#faq">Veelgestelde vragen</a></li>
+    </ul>
+  </div>
 </nav>
 
 <header style="
@@ -195,6 +234,14 @@
 <footer>
   © 2025 Pure Cadeau Box
 </footer>
+
+<script>
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.getElementById('nav-links');
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+</script>
 
 </body>
 </html>
