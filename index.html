@@ -198,6 +198,31 @@ section {
   transform: scale(1.05);
 }
 
+/* Beschikbaarheid bolletje naast prijs */
+.product-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-weight: bold;
+  font-family: 'Lora', serif;
+}
+
+.product-status .bolletje {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.product-status.beschikbaar .bolletje {
+  background-color: green;
+}
+
+.product-status.niet-beschikbaar .bolletje {
+  background-color: red;
+}
+
 /* Formulier */
 input[type="text"], input[type="email"], input[type="tel"], select, textarea {
   font-family: 'Lora', serif;
@@ -275,28 +300,8 @@ footer {
 <!-- Producten -->
 <section id="producten">
   <h2>Onze Cadeauboxen</h2>
-  <div class="products">
-    <div class="card">
-      <img src="images/Pure Relax Box.jpg" alt="Pure Relax Box">
-      <h3>Pure Relax Box</h3>
-      <p>Een moment van rust in een doos. Perfect om even te ontspannen.</p>
-      <div class="price">€29,95</div>
-      <a class="btn" href="https://wa.me/31600000000">Bestel via WhatsApp</a>
-    </div>
-    <div class="card">
-      <img src="images/Pure Love Box.jpg" alt="Pure Love Box">
-      <h3>Pure Love Box</h3>
-      <p>Een liefdevol cadeau voor een verjaardag, bedankje of zomaar.</p>
-      <div class="price">€34,95</div>
-      <a class="btn" href="https://wa.me/31600000000">Bestel via WhatsApp</a>
-    </div>
-    <div class="card">
-      <img src="images/Pure-care-Box.jpg" alt="Pure Care Box">
-      <h3>Pure Care Box</h3>
-      <p>Een attent cadeau om iemand te laten weten dat je aan hen denkt.</p>
-      <div class="price">€24,95</div>
-      <a class="btn" href="https://wa.me/31630301311">Bestel via WhatsApp</a>
-    </div>
+  <div class="products" id="productlijst">
+    <!-- Producten worden hier via JavaScript ingeladen -->
   </div>
 </section>
 
@@ -387,6 +392,33 @@ form.addEventListener('submit', function(e) {
   const text = `Bestelling:%0ANaam: ${name}%0AEmail: ${email}%0ATelefoon: ${phone}%0AProduct: ${product}%0ABericht: ${message}`;
   const whatsappURL = `https://wa.me/31600000000?text=${text}`;
   window.open(whatsappURL, '_blank');
+});
+
+// Dynamische producten met beschikbaarheid
+const producten = [
+  { naam: "Pure Relax Box", prijs: "€29,95", img: "images/Pure Relax Box.jpg", beschikbaar: true, link: "https://wa.me/31600000000" },
+  { naam: "Pure Love Box", prijs: "€34,95", img: "images/Pure Love Box.jpg", beschikbaar: false, link: "https://wa.me/31600000000" },
+  { naam: "Pure Care Box", prijs: "€24,95", img: "images/Pure-care-Box.jpg", beschikbaar: true, link: "https://wa.me/3160000000" }
+];
+
+const container = document.getElementById("productlijst");
+
+producten.forEach(product => {
+  const statusClass = product.beschikbaar ? "beschikbaar" : "niet-beschikbaar";
+  const statusTekst = product.beschikbaar ? "Beschikbaar" : "Niet beschikbaar";
+
+  container.innerHTML += `
+    <div class="card">
+      <img src="${product.img}" alt="${product.naam}">
+      <h3>${product.naam}</h3>
+      <p>Beschrijving van ${product.naam}.</p>
+      <div class="price">${product.prijs}</div>
+      <div class="product-status ${statusClass}">
+        <span class="bolletje"></span>${statusTekst}
+      </div>
+      <a class="btn" href="${product.link}">Bestel via WhatsApp</a>
+    </div>
+  `;
 });
 </script>
 
