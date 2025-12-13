@@ -11,6 +11,27 @@
       background-color: #f6f2ed;
       color: #111;
     }
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(246, 242, 237, 0.95);
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 15px 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #000;
+      text-decoration: underline;
+    }
     header {
       padding: 40px 20px;
       text-align: center;
@@ -54,13 +75,13 @@
       padding: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     }
-   .card img {
-  width: 100%;
-  height: 250px; /* vaste hoogte voor alle afbeeldingen */
-  object-fit: cover; /* zorgt dat de afbeelding netjes past zonder vervorming */
-  border-radius: 12px;
-  margin-bottom: 15px;
-}
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
     .price {
       font-weight: bold;
       margin: 10px 0;
@@ -73,10 +94,21 @@
     }
     @media (max-width: 600px) {
       header h1 { font-size: 1.8rem; }
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
   </style>
 </head>
 <body>
+
+<nav>
+  <a href="#producten">Producten</a>
+  <a href="#over-ons">Over ons</a>
+  <a href="#contact">Contact</a>
+  <a href="#faq">Veelgestelde vragen</a>
+</nav>
 
 <header style="
   position: relative;
