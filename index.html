@@ -16,11 +16,13 @@
   --card-bg: #fff;
 }
 
+/* Scroll gedrag */
 html {
   scroll-padding-top: 70px;
   scroll-behavior: smooth;
 }
 
+/* Body */
 body {
   margin: 0;
   font-family: 'Lora', serif;
@@ -33,6 +35,7 @@ body {
 h1,h2,h3,h4,h5 {
   font-family: 'Playfair Display', serif;
   letter-spacing: 1px;
+  margin: 0 0 10px 0;
 }
 
 /* Navigatie */
@@ -60,6 +63,8 @@ nav {
   list-style: none;
   display: flex;
   gap: 40px;
+  margin: 0;
+  padding: 0;
 }
 .nav-links li a {
   font-family: 'Lora', serif;
@@ -80,16 +85,15 @@ nav {
   background-color: var(--secondary);
   transition: width 0.3s ease;
 }
-.nav-links li a:hover::after {
-  width: 100%;
-}
-.nav-links li a:hover {
-  color: var(--secondary);
-}
+.nav-links li a:hover::after { width: 100%; }
+.nav-links li a:hover { color: var(--secondary); }
+
 .menu-toggle {
   display: none;
   font-size: 1.8rem;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 
 /* Header */
@@ -105,7 +109,7 @@ header {
   justify-content: center;
   align-items: center;
 }
-header .header-content {
+.header-content {
   background-color: rgba(246,242,237,0.7);
   padding: 20px 40px;
   border-radius: 12px;
@@ -121,7 +125,6 @@ header .header-content {
 }
 header h1 {
   font-size: 2.8rem;
-  margin: 0;
 }
 header p {
   font-size: 1.2rem;
@@ -160,9 +163,7 @@ header p {
   transition: width 0.4s ease;
   border-radius: 40px;
 }
-.btn:hover::after {
-  width: 100%;
-}
+.btn:hover::after { width: 100%; }
 
 /* Secties */
 section {
@@ -195,9 +196,7 @@ section {
   border-radius: 12px;
   transition: transform 0.3s ease;
 }
-.card:hover img {
-  transform: scale(1.05);
-}
+.card:hover img { transform: scale(1.05); }
 .product-status {
   display: flex;
   align-items: center;
@@ -214,8 +213,28 @@ section {
 .product-status.beschikbaar .bolletje { background-color: green; }
 .product-status.niet-beschikbaar .bolletje { background-color: red; }
 
-/* Formulier */
-form input, form select, form textarea {
+/* Bestelformulier */
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+.order-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.order-form input,
+.order-form select,
+.order-form textarea {
+  width: 100%;
+  box-sizing: border-box;
   font-family: 'Lora', serif;
   font-size: 1rem;
   padding: 12px;
@@ -223,7 +242,9 @@ form input, form select, form textarea {
   border: 1px solid #ccc;
   transition: all 0.3s ease;
 }
-form input:focus, form select:focus, form textarea:focus {
+.order-form input:focus,
+.order-form select:focus,
+.order-form textarea:focus {
   border-color: var(--primary);
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
   outline: none;
@@ -244,7 +265,7 @@ footer {
     top: 60px;
     left: 0;
     right: 0;
-    background-color: rgba(246, 242, 237,0.95);
+    background-color: rgba(246,242,237,0.95);
     flex-direction: column;
     gap: 20px;
     padding: 20px;
@@ -300,22 +321,32 @@ footer {
 <!-- Bestelformulier -->
 <section id="bestellen">
   <h2>Bestelformulier</h2>
-  <form id="order-form">
-    <label for="name">Naam:</label>
-    <input type="text" id="name" name="name" required>
-    <label for="email">E-mail:</label>
-    <input type="email" id="email" name="email" required>
-    <label for="phone">Telefoonnummer:</label>
-    <input type="tel" id="phone" name="phone" required>
-    <label for="product">Kies een cadeaubox:</label>
-    <select id="product" name="product" required>
-      <option value="">-- Selecteer een box --</option>
-      <option value="Pure Relax Box">Pure Relax Box (€29,95)</option>
-      <option value="Pure Love Box">Pure Love Box (€34,95)</option>
-      <option value="Pure Care Box">Pure Care Box (€24,95)</option>
-    </select>
-    <label for="message">Eventueel bericht / kaartje:</label>
-    <textarea id="message" name="message" rows="3"></textarea>
+  <form id="order-form" class="order-form">
+    <div class="form-group">
+      <label for="name">Naam:</label>
+      <input type="text" id="name" name="name" placeholder="Uw naam" required>
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" placeholder="voorbeeld@email.com" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Telefoonnummer:</label>
+      <input type="tel" id="phone" name="phone" placeholder="06-12345678" required>
+    </div>
+    <div class="form-group">
+      <label for="product">Kies een cadeaubox:</label>
+      <select id="product" name="product" required>
+        <option value="">-- Selecteer een box --</option>
+        <option value="Pure Relax Box">Pure Relax Box (€29,95)</option>
+        <option value="Pure Love Box">Pure Love Box (€34,95)</option>
+        <option value="Pure Care Box">Pure Care Box (€24,95)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="message">Eventueel bericht / kaartje:</label>
+      <textarea id="message" name="message" rows="3" placeholder="Uw bericht"></textarea>
+    </div>
     <button type="submit" class="btn">Bestel</button>
   </form>
 </section>
