@@ -4,13 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pure Cadeau Box</title>
+
+  <!-- Google Fonts: Playfair Display en Lora -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
+    /* Algemene body */
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Lora', serif;
       background-color: #f6f2ed;
       color: #111;
     }
+
+    /* Titels */
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Navigatie */
     nav {
       background-color: rgba(246, 242, 237, 0.95);
       position: sticky;
@@ -27,8 +39,10 @@
       padding: 10px 20px;
     }
     .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
       font-weight: bold;
-      font-size: 1.2rem;
+      letter-spacing: 1px;
     }
     .nav-links {
       list-style: none;
@@ -36,63 +50,79 @@
       gap: 40px;
     }
     .nav-links li a {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
       text-decoration: none;
       color: #111;
       font-weight: 600;
+      position: relative;
       transition: color 0.3s ease;
     }
-    .nav-links li a:hover {
-      color: #000;
-      text-decoration: underline;
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #111;
+      transition: width 0.3s ease;
+    }
+    .nav-links li a:hover::after {
+      width: 100%;
     }
     .menu-toggle {
       display: none;
       font-size: 1.8rem;
       cursor: pointer;
     }
+
+    /* Header */
     header {
       padding: 40px 20px;
       text-align: center;
       background-color: #f6f2ed;
     }
-    header h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.1rem;
+    header div h1 {
+      font-size: 2.8rem;
+      letter-spacing: 1px;
       margin-bottom: 20px;
     }
+    header div p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    /* Knoppen */
     .btn {
       display: inline-block;
-      padding: 12px 24px;
+      padding: 14px 28px;
       border: 1px solid #111;
       text-decoration: none;
       color: #111;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      border-radius: 40px;
+      font-size: 1rem;
+      font-family: 'Lora', serif;
+      background-color: #fff;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
-    .btn::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.05);
-      transition: all 0.4s ease;
-      border-radius: 30px;
+    .btn:hover {
+      color: #fff;
+      background-color: #111;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
-    .btn:hover::after {
-      left: 0;
-    }
+
+    /* Secties */
     section {
       padding: 60px 20px;
       max-width: 1100px;
       margin: auto;
     }
+
+    /* Producten */
     .products {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -103,6 +133,11 @@
       border-radius: 16px;
       padding: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
     .card img {
       width: 100%;
@@ -115,12 +150,31 @@
       font-weight: bold;
       margin: 10px 0;
     }
+
+    /* Formulier */
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, select:focus, textarea:focus {
+      border-color: #111;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      outline: none;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
       padding: 30px 20px;
       font-size: 0.9rem;
       background: #eee;
     }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .nav-links {
         position: absolute;
@@ -141,12 +195,13 @@
       }
     }
     @media (max-width: 600px) {
-      header h1 { font-size: 1.8rem; }
+      header div h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
 
+<!-- Navigatie -->
 <nav>
   <div class="nav-container">
     <div class="logo">Pure Cadeau Box</div>
@@ -161,6 +216,7 @@
   </div>
 </nav>
 
+<!-- Header Banner -->
 <header style="
   position: relative;
   height: 500px;
@@ -179,32 +235,23 @@
     padding: 20px 40px;
     border-radius: 12px;
   ">
-    <h1 style="font-size: 2.5rem; margin-bottom: 20px;">Pure Cadeau Box</h1>
-    <p style="font-size: 1.2rem; margin-bottom: 30px;">Pure cadeaumomenten, met zorg samengesteld</p>
-    <a href="#producten" class="btn" style="
-      padding: 12px 24px;
-      border: 1px solid #111;
-      text-decoration: none;
-      color: #111;
-      border-radius: 30px;
-      font-size: 1rem;
-      background-color: #fff;
-    ">Bekijk cadeauboxen</a>
+    <h1>Pure Cadeau Box</h1>
+    <p>Pure cadeaumomenten, met zorg samengesteld</p>
+    <a href="#producten" class="btn">Bekijk cadeauboxen</a>
   </div>
 </header>
 
+<!-- Producten -->
 <section id="producten">
   <h2>Onze Cadeauboxen</h2>
   <div class="products">
-
     <div class="card">
-        <img src="images/Pure Relax Box.jpg" alt="Pure Relax Box">
+      <img src="images/Pure Relax Box.jpg" alt="Pure Relax Box">
       <h3>Pure Relax Box</h3>
       <p>Een moment van rust in een doos. Perfect om even te ontspannen.</p>
       <div class="price">€29,95</div>
       <a class="btn" href="https://wa.me/31600000000">Bestel via WhatsApp</a>
     </div>
-
     <div class="card">
       <img src="images/Pure Love Box.jpg" alt="Pure Love Box">
       <h3>Pure Love Box</h3>
@@ -212,7 +259,6 @@
       <div class="price">€34,95</div>
       <a class="btn" href="https://wa.me/31600000000">Bestel via WhatsApp</a>
     </div>
-
     <div class="card">
       <img src="images/Pure-care-Box.jpg" alt="Pure Care Box">
       <h3>Pure Care Box</h3>
@@ -220,15 +266,16 @@
       <div class="price">€24,95</div>
       <a class="btn" href="https://wa.me/31630301311">Bestel via WhatsApp</a>
     </div>
-
   </div>
 </section>
 
+<!-- Over ons -->
 <section id="over-ons">
   <h2>Over ons</h2>
   <p>Pure Cadeaubox is ontstaan vanuit de liefde voor geven. Wij geloven dat een klein gebaar een groot verschil kan maken.</p>
 </section>
 
+<!-- Bestelformulier -->
 <section id="bestellen">
   <h2>Bestelformulier</h2>
   <form id="order-form" style="
@@ -243,16 +290,16 @@
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   ">
     <label for="name">Naam:</label>
-    <input type="text" id="name" name="name" required style="padding:10px; border-radius:6px; border:1px solid #ccc;">
+    <input type="text" id="name" name="name" required>
 
     <label for="email">E-mail:</label>
-    <input type="email" id="email" name="email" required style="padding:10px; border-radius:6px; border:1px solid #ccc;">
+    <input type="email" id="email" name="email" required>
 
     <label for="phone">Telefoonnummer:</label>
-    <input type="tel" id="phone" name="phone" required style="padding:10px; border-radius:6px; border:1px solid #ccc;">
+    <input type="tel" id="phone" name="phone" required>
 
     <label for="product">Kies een cadeaubox:</label>
-    <select id="product" name="product" required style="padding:10px; border-radius:6px; border:1px solid #ccc;">
+    <select id="product" name="product" required>
       <option value="">-- Selecteer een box --</option>
       <option value="Pure Relax Box">Pure Relax Box (€29,95)</option>
       <option value="Pure Love Box">Pure Love Box (€34,95)</option>
@@ -260,18 +307,20 @@
     </select>
 
     <label for="message">Eventueel bericht / kaartje:</label>
-    <textarea id="message" name="message" rows="3" style="padding:10px; border-radius:6px; border:1px solid #ccc;"></textarea>
+    <textarea id="message" name="message" rows="3"></textarea>
 
-    <button type="submit" class="btn" style="align-self:flex-start;">Bestel</button>
+    <button type="submit" class="btn">Bestel</button>
   </form>
 </section>
 
+<!-- Contact -->
 <section id="contact">
   <h2>Contact</h2>
   <p>Bestel via het formulier of stuur ons een WhatsApp-bericht.</p>
   <p>E-mail: info@purecadeaubox.nl</p>
 </section>
 
+<!-- FAQ -->
 <section id="faq">
   <h2>Veelgestelde vragen</h2>
   <p><strong>Hoe lang duurt de levering?</strong><br>1–3 werkdagen.</p>
@@ -280,10 +329,12 @@
   <p><strong>Kan ik een box personaliseren?</strong><br>Ja, neem contact met ons op.</p>
 </section>
 
+<!-- Footer -->
 <footer>
   © 2025 Pure Cadeau Box
 </footer>
 
+<!-- Scripts -->
 <script>
 const menuToggle = document.getElementById('mobile-menu');
 const navLinks = document.getElementById('nav-links');
@@ -301,7 +352,7 @@ form.addEventListener('submit', function(e) {
   const message = document.getElementById('message').value;
 
   const text = `Bestelling:%0ANaam: ${name}%0AEmail: ${email}%0ATelefoon: ${phone}%0AProduct: ${product}%0ABericht: ${message}`;
-  const whatsappURL = `https://wa.me/31600000000?text=${text}`; // Vervang met je eigen WhatsApp-nummer
+  const whatsappURL = `https://wa.me/31600000000?text=${text}`;
   window.open(whatsappURL, '_blank');
 });
 </script>
