@@ -16,12 +16,11 @@
   --card-bg: #fff;
 }
 
-/* Scroll padding voor sticky menu */
 html {
-  scroll-padding-top: 70px; /* hoogte van nav */
+  scroll-padding-top: 70px;
+  scroll-behavior: smooth;
 }
 
-/* Body */
 body {
   margin: 0;
   font-family: 'Lora', serif;
@@ -106,7 +105,7 @@ header {
   justify-content: center;
   align-items: center;
 }
-header div {
+header .header-content {
   background-color: rgba(246,242,237,0.7);
   padding: 20px 40px;
   border-radius: 12px;
@@ -120,11 +119,13 @@ header div {
     transform: translateY(0);
   }
 }
-header div h1 {
+header h1 {
   font-size: 2.8rem;
+  margin: 0;
 }
-header div p {
+header p {
   font-size: 1.2rem;
+  margin: 10px 0 20px 0;
 }
 
 /* Knoppen */
@@ -197,34 +198,24 @@ section {
 .card:hover img {
   transform: scale(1.05);
 }
-
-/* Beschikbaarheid bolletje naast prijs */
 .product-status {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 8px;
   font-weight: bold;
-  font-family: 'Lora', serif;
 }
-
 .product-status .bolletje {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   display: inline-block;
 }
-
-.product-status.beschikbaar .bolletje {
-  background-color: green;
-}
-
-.product-status.niet-beschikbaar .bolletje {
-  background-color: red;
-}
+.product-status.beschikbaar .bolletje { background-color: green; }
+.product-status.niet-beschikbaar .bolletje { background-color: red; }
 
 /* Formulier */
-input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+form input, form select, form textarea {
   font-family: 'Lora', serif;
   font-size: 1rem;
   padding: 12px;
@@ -232,7 +223,7 @@ input[type="text"], input[type="email"], input[type="tel"], select, textarea {
   border: 1px solid #ccc;
   transition: all 0.3s ease;
 }
-input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, select:focus, textarea:focus {
+form input:focus, form select:focus, form textarea:focus {
   border-color: var(--primary);
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
   outline: none;
@@ -259,25 +250,21 @@ footer {
     padding: 20px;
     display: none;
   }
-  .nav-links.active {
-    display: flex;
-  }
-  .menu-toggle {
-    display: block;
-  }
+  .nav-links.active { display: flex; }
+  .menu-toggle { display: block; }
 }
 @media (max-width: 600px) {
-  header div h1 { font-size: 1.8rem; }
+  header h1 { font-size: 1.8rem; }
 }
 </style>
 </head>
 <body>
 
 <!-- Navigatie -->
-<nav>
+<nav aria-label="Hoofdmenu">
   <div class="nav-container">
     <div class="logo">Pure Cadeau Box</div>
-    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <button class="menu-toggle" id="mobile-menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
     <ul class="nav-links" id="nav-links">
       <li><a href="#producten">Producten</a></li>
       <li><a href="#over-ons">Over ons</a></li>
@@ -290,19 +277,18 @@ footer {
 
 <!-- Header -->
 <header>
-  <div>
+  <div class="header-content">
     <h1>Pure Cadeau Box</h1>
     <p>Pure cadeaumomenten, met zorg samengesteld</p>
     <a href="#producten" class="btn">Bekijk cadeauboxen</a>
   </div>
 </header>
 
+<main>
 <!-- Producten -->
 <section id="producten">
   <h2>Onze Cadeauboxen</h2>
-  <div class="products" id="productlijst">
-    <!-- Producten worden hier via JavaScript ingeladen -->
-  </div>
+  <div class="products" id="productlijst"></div>
 </section>
 
 <!-- Over ons -->
@@ -314,7 +300,7 @@ footer {
 <!-- Bestelformulier -->
 <section id="bestellen">
   <h2>Bestelformulier</h2>
-  <form id="order-form" style="display:flex; flex-direction:column; gap:15px; max-width:500px; margin:auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.05);">
+  <form id="order-form">
     <label for="name">Naam:</label>
     <input type="text" id="name" name="name" required>
     <label for="email">E-mail:</label>
@@ -344,39 +330,45 @@ footer {
 <!-- FAQ -->
 <section id="faq">
   <h2>Veelgestelde vragen</h2>
-  <p><strong>Hoe lang duurt de levering?</strong><br>1–3 werkdagen.</p>
-  <p><strong>Kan ik een kaartje toevoegen?</strong><br>Ja, gratis.</p>
-  <p><strong>Is het cadeau direct verzendbaar?</strong><br>Ja, zolang op voorraad.</p>
-  <p><strong>Kan ik een box personaliseren?</strong><br>Ja, neem contact met ons op.</p>
+  <dl>
+    <dt>Hoe lang duurt de levering?</dt>
+    <dd>1–3 werkdagen.</dd>
+    <dt>Kan ik een kaartje toevoegen?</dt>
+    <dd>Ja, gratis.</dd>
+    <dt>Is het cadeau direct verzendbaar?</dt>
+    <dd>Ja, zolang op voorraad.</dd>
+    <dt>Kan ik een box personaliseren?</dt>
+    <dd>Ja, neem contact met ons op.</dd>
+  </dl>
 </section>
+</main>
 
 <!-- Footer -->
-<footer>
-  © 2025 Pure Cadeau Box
-</footer>
+<footer>© 2025 Pure Cadeau Box</footer>
 
 <script>
 // Mobiele menu toggle
 const menuToggle = document.getElementById('mobile-menu');
 const navLinks = document.getElementById('nav-links');
 menuToggle.addEventListener('click', () => {
+  const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+  menuToggle.setAttribute('aria-expanded', !expanded);
   navLinks.classList.toggle('active');
 });
 
-// Scroll met offset voor sticky menu en sluit menu
+// Scroll met offset en sluit menu
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
     const targetId = this.getAttribute('href').substring(1);
     const targetSection = document.getElementById(targetId);
-    const offset = 70; // hoogte sticky menu
+    const offset = 70;
     const bodyRect = document.body.getBoundingClientRect().top;
     const sectionRect = targetSection.getBoundingClientRect().top;
     const scrollPos = sectionRect - bodyRect - offset;
     window.scrollTo({ top: scrollPos, behavior: 'smooth' });
-
-    // sluit menu op mobiel
     navLinks.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', false);
   });
 });
 
@@ -389,12 +381,12 @@ form.addEventListener('submit', function(e) {
   const phone = document.getElementById('phone').value;
   const product = document.getElementById('product').value;
   const message = document.getElementById('message').value;
-  const text = `Bestelling:%0ANaam: ${name}%0AEmail: ${email}%0ATelefoon: ${phone}%0AProduct: ${product}%0ABericht: ${message}`;
+  const text = encodeURIComponent(`Bestelling:\nNaam: ${name}\nEmail: ${email}\nTelefoon: ${phone}\nProduct: ${product}\nBericht: ${message}`);
   const whatsappURL = `https://wa.me/31600000000?text=${text}`;
   window.open(whatsappURL, '_blank');
 });
 
-// Dynamische producten met beschikbaarheid
+// Dynamische producten via createElement
 const producten = [
   { naam: "Pure Relax Box", prijs: "€29,95", img: "images/Pure Relax Box.jpg", beschikbaar: false, link: "https://wa.me/31600000000" },
   { naam: "Pure Love Box", prijs: "€34,95", img: "images/Pure Love Box.jpg", beschikbaar: false, link: "https://wa.me/31600000000" },
@@ -402,23 +394,35 @@ const producten = [
 ];
 
 const container = document.getElementById("productlijst");
-
 producten.forEach(product => {
-  const statusClass = product.beschikbaar ? "beschikbaar" : "niet-beschikbaar";
-  const statusTekst = product.beschikbaar ? "Beschikbaar" : "Niet beschikbaar";
+  const card = document.createElement('div');
+  card.className = 'card';
 
-  container.innerHTML += `
-    <div class="card">
-      <img src="${product.img}" alt="${product.naam}">
-      <h3>${product.naam}</h3>
-      <p>Beschrijving van ${product.naam}.</p>
-      <div class="price">${product.prijs}</div>
-      <div class="product-status ${statusClass}">
-        <span class="bolletje"></span>${statusTekst}
-      </div>
-      <a class="btn" href="${product.link}">Bestel via WhatsApp</a>
-    </div>
-  `;
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.naam;
+
+  const h3 = document.createElement('h3');
+  h3.textContent = product.naam;
+
+  const p = document.createElement('p');
+  p.textContent = `Beschrijving van ${product.naam}.`;
+
+  const prijs = document.createElement('div');
+  prijs.className = 'price';
+  prijs.textContent = product.prijs;
+
+  const status = document.createElement('div');
+  status.className = 'product-status ' + (product.beschikbaar ? 'beschikbaar' : 'niet-beschikbaar');
+  status.innerHTML = `<span class="bolletje"></span>${product.beschikbaar ? 'Beschikbaar' : 'Niet beschikbaar'}`;
+
+  const btn = document.createElement('a');
+  btn.href = product.link;
+  btn.className = 'btn';
+  btn.textContent = 'Bestel via WhatsApp';
+
+  card.append(img,h3,p,prijs,status,btn);
+  container.appendChild(card);
 });
 </script>
 
