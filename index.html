@@ -1,11 +1,89 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<title>Pure cadeau box</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pure Cadeau Box</title>
+<style>
+body {
+margin: 0;
+font-family: 'Arial', sans-serif;
+background-color: #f6f2ed;
+color: #111;
+}
+header {
+padding: 40px 20px;
+text-align: center;
+background-color: #f6f2ed;
+}
+header h1 {
+font-size: 2.2rem;
+margin-bottom: 10px;
+}
+header p {
+font-size: 1.1rem;
+margin-bottom: 20px;
+}
+.btn {
+display: inline-block;
+padding: 12px 24px;
+border: 1px solid #111;
+text-decoration: none;
+color: #111;
+border-radius: 30px;
+font-size: 0.95rem;
+}
+section {
+padding: 60px 20px;
+max-width: 1100px;
+margin: auto;
+}
+.products {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 30px;
+}
+.card {
+background: #fff;
+border-radius: 16px;
+padding: 20px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+.card img {
+width: 100%;
+border-radius: 12px;
+margin-bottom: 15px;
+}
+.price {
+font-weight: bold;
+margin: 10px 0;
+}
+footer {
+text-align: center;
+padding: 30px 20px;
+font-size: 0.9rem;
+background: #eee;
+}
+@media (max-width: 600px) {
+header h1 { font-size: 1.8rem; }
+}
+</style>
 </head>
 <body>
-<h1>Handgemaakte geschenksets</h1>
-<p>Mijn website staat online via GitHub Pages.</p>
-</body>
-</html>
+
+
+<header>
+<h1>Pure Cadeau Box</h1>
+<p>Pure cadeaumomenten, met zorg samengesteld</p>
+<a href="#producten" class="btn">Bekijk cadeauboxen</a>
+</header>
+
+
+<section id="producten">
+<h2>Onze Cadeauboxen</h2>
+<div class="products">
+
+
+<div class="card">
+<img src="https://via.placeholder.com/400x300" alt="Pure Relax Box">
+<h3>Pure Relax Box</h3>
