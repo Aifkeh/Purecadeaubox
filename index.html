@@ -54,11 +54,13 @@
       padding: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     }
-    .card img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 15px;
-    }
+   .card img {
+  width: 100%;
+  height: 250px; /* vaste hoogte voor alle afbeeldingen */
+  object-fit: cover; /* zorgt dat de afbeelding netjes past zonder vervorming */
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
     .price {
       font-weight: bold;
       margin: 10px 0;
