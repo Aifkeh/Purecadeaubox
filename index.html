@@ -68,39 +68,17 @@ nav {
 }
 .nav-links li a {
   font-family: 'Lora', serif;
-  font-size: 1rem;
   text-decoration: none;
   color: var(--primary);
   font-weight: 600;
   position: relative;
-  transition: color 0.3s ease;
 }
-.nav-links li a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: var(--secondary);
-  transition: width 0.3s ease;
-}
-.nav-links li a:hover::after { width: 100%; }
-.nav-links li a:hover { color: var(--secondary); }
-
 .menu-toggle {
   display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  background: none;
-  border: none;
 }
 
 /* Header */
 header {
-  padding: 40px 20px;
-  text-align: center;
-  position: relative;
   height: 500px;
   background-image: url('images/Banner-Pure-cadeau-box.jpg');
   background-size: cover;
@@ -113,22 +91,6 @@ header {
   background-color: rgba(246,242,237,0.7);
   padding: 20px 40px;
   border-radius: 12px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 1s ease forwards;
-}
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-header h1 {
-  font-size: 2.8rem;
-}
-header p {
-  font-size: 1.2rem;
-  margin: 10px 0 20px 0;
 }
 
 /* Knoppen */
@@ -139,31 +101,19 @@ header p {
   text-decoration: none;
   color: var(--primary);
   border-radius: 40px;
-  font-size: 1rem;
-  font-family: 'Lora', serif;
   background-color: #fff;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
 }
-.btn:hover {
-  color: #fff;
-  background-color: var(--primary);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+
+/* ❗ UITGESCHAKELDE KNOP */
+.btn.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
-.btn::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: var(--secondary);
-  opacity: 0.2;
-  transition: width 0.4s ease;
-  border-radius: 40px;
-}
-.btn:hover::after { width: 100%; }
 
 /* Secties */
 section {
@@ -183,120 +133,48 @@ section {
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 .card img {
   width: 100%;
   height: 250px;
   object-fit: cover;
   border-radius: 12px;
-  transition: transform 0.3s ease;
 }
-.card:hover img { transform: scale(1.05); }
+
+/* Status */
 .product-status {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
   font-weight: bold;
 }
 .product-status .bolletje {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  display: inline-block;
 }
-.product-status.beschikbaar .bolletje { background-color: green; }
-.product-status.niet-beschikbaar .bolletje { background-color: red; }
+.product-status.beschikbaar .bolletje { background: green; }
+.product-status.niet-beschikbaar .bolletje { background: red; }
 
 /* Bestelformulier */
 .order-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
   max-width: 500px;
-  margin: 0 auto;
+  margin: auto;
+  background: #fff;
   padding: 20px;
   border-radius: 12px;
-  background: var(--card-bg);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-}
-.order-form .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.order-form input,
-.order-form select,
-.order-form textarea {
-  width: 100%;
-  box-sizing: border-box;
-  font-family: 'Lora', serif;
-  font-size: 1rem;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  transition: all 0.3s ease;
-}
-.order-form input:focus,
-.order-form select:focus,
-.order-form textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  outline: none;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 30px 20px;
-  font-size: 0.9rem;
+  padding: 30px;
   background: #eee;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background-color: rgba(246,242,237,0.95);
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    display: none;
-  }
-  .nav-links.active { display: flex; }
-  .menu-toggle { display: block; }
-}
-@media (max-width: 600px) {
-  header h1 { font-size: 1.8rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- Navigatie -->
-<nav aria-label="Hoofdmenu">
-  <div class="nav-container">
-    <div class="logo">Pure Cadeau Box</div>
-    <button class="menu-toggle" id="mobile-menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#producten">Producten</a></li>
-      <li><a href="#over-ons">Over ons</a></li>
-      <li><a href="#bestellen">Bestellen</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#faq">Veelgestelde vragen</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- Header -->
 <header>
   <div class="header-content">
     <h1>Pure Cadeau Box</h1>
@@ -305,154 +183,48 @@ footer {
   </div>
 </header>
 
-<main>
-<!-- Producten -->
 <section id="producten">
   <h2>Onze Cadeauboxen</h2>
   <div class="products" id="productlijst"></div>
 </section>
 
-<!-- Over ons -->
-<section id="over-ons">
-  <h2>Over ons</h2>
-  <p>Pure Cadeaubox is ontstaan vanuit de liefde voor geven. Wij geloven dat een klein gebaar een groot verschil kan maken.</p>
-</section>
-
-<!-- Bestelformulier -->
-<section id="bestellen">
-  <h2>Bestelformulier</h2>
-  <form id="order-form" class="order-form">
-    <div class="form-group">
-      <label for="name">Naam:</label>
-      <input type="text" id="name" name="name" placeholder="Uw naam" required>
-    </div>
-    <div class="form-group">
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" placeholder="voorbeeld@email.com" required>
-    </div>
-    <div class="form-group">
-      <label for="phone">Telefoonnummer:</label>
-      <input type="tel" id="phone" name="phone" placeholder="06-12345678" required>
-    </div>
-    <div class="form-group">
-      <label for="product">Kies een cadeaubox:</label>
-      <select id="product" name="product" required>
-        <option value="">-- Selecteer een box --</option>
-        <option value="Pure Relax Box">Pure Relax Box (€29,95)</option>
-        <option value="Pure Love Box">Pure Love Box (€34,95)</option>
-        <option value="Pure Care Box">Pure Care Box (€24,95)</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="message">Eventueel bericht / kaartje:</label>
-      <textarea id="message" name="message" rows="3" placeholder="Uw bericht"></textarea>
-    </div>
-    <button type="submit" class="btn">Bestel</button>
-  </form>
-</section>
-
-<!-- Contact -->
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Bestel via het formulier of stuur ons een WhatsApp-bericht.</p>
-  <p>E-mail: info@purecadeaubox.nl</p>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <h2>Veelgestelde vragen</h2>
-  <dl>
-    <dt>Hoe lang duurt de levering?</dt>
-    <dd>1–3 werkdagen.</dd>
-    <dt>Kan ik een kaartje toevoegen?</dt>
-    <dd>Ja, gratis.</dd>
-    <dt>Is het cadeau direct verzendbaar?</dt>
-    <dd>Ja, zolang op voorraad.</dd>
-    <dt>Kan ik een box personaliseren?</dt>
-    <dd>Ja, neem contact met ons op.</dd>
-  </dl>
-</section>
-</main>
-
-<!-- Footer -->
 <footer>© 2025 Pure Cadeau Box</footer>
 
 <script>
-// Mobiele menu toggle
-const menuToggle = document.getElementById('mobile-menu');
-const navLinks = document.getElementById('nav-links');
-menuToggle.addEventListener('click', () => {
-  const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-  menuToggle.setAttribute('aria-expanded', !expanded);
-  navLinks.classList.toggle('active');
-});
-
-// Scroll met offset en sluit menu
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href').substring(1);
-    const targetSection = document.getElementById(targetId);
-    const offset = 70;
-    const bodyRect = document.body.getBoundingClientRect().top;
-    const sectionRect = targetSection.getBoundingClientRect().top;
-    const scrollPos = sectionRect - bodyRect - offset;
-    window.scrollTo({ top: scrollPos, behavior: 'smooth' });
-    navLinks.classList.remove('active');
-    menuToggle.setAttribute('aria-expanded', false);
-  });
-});
-
-// Bestelformulier via WhatsApp
-const form = document.getElementById('order-form');
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const phone = document.getElementById('phone').value;
-  const product = document.getElementById('product').value;
-  const message = document.getElementById('message').value;
-  const text = encodeURIComponent(`Bestelling:\nNaam: ${name}\nEmail: ${email}\nTelefoon: ${phone}\nProduct: ${product}\nBericht: ${message}`);
-  const whatsappURL = `https://wa.me/31600000000?text=${text}`;
-  window.open(whatsappURL, '_blank');
-});
-
-// Dynamische producten via createElement
 const producten = [
   { naam: "Pure Relax Box", prijs: "€29,95", img: "images/Pure Relax Box.jpg", beschikbaar: false, link: "https://wa.me/31600000000" },
-  { naam: "Pure Love Box", prijs: "€34,95", img: "images/Pure Love Box.jpg", beschikbaar: false, link: "https://wa.me/31600000000" },
+  { naam: "Pure Love Box", prijs: "€34,95", img: "images/Pure Love Box.jpg", beschikbaar: true, link: "https://wa.me/31600000000" },
   { naam: "Pure Care Box", prijs: "€24,95", img: "images/Pure-care-Box.jpg", beschikbaar: false, link: "https://wa.me/3160000000" }
 ];
 
 const container = document.getElementById("productlijst");
+
 producten.forEach(product => {
   const card = document.createElement('div');
   card.className = 'card';
 
-  const img = document.createElement('img');
-  img.src = product.img;
-  img.alt = product.naam;
-
-  const h3 = document.createElement('h3');
-  h3.textContent = product.naam;
-
-  const p = document.createElement('p');
-  p.textContent = `Beschrijving van ${product.naam}.`;
-
-  const prijs = document.createElement('div');
-  prijs.className = 'price';
-  prijs.textContent = product.prijs;
-
-  const status = document.createElement('div');
-  status.className = 'product-status ' + (product.beschikbaar ? 'beschikbaar' : 'niet-beschikbaar');
-  status.innerHTML = `<span class="bolletje"></span>${product.beschikbaar ? 'Beschikbaar' : 'Niet beschikbaar'}`;
+  card.innerHTML = `
+    <img src="${product.img}" alt="${product.naam}">
+    <h3>${product.naam}</h3>
+    <p>${product.prijs}</p>
+    <div class="product-status ${product.beschikbaar ? 'beschikbaar' : 'niet-beschikbaar'}">
+      <span class="bolletje"></span>
+      ${product.beschikbaar ? 'Beschikbaar' : 'Niet beschikbaar'}
+    </div>
+  `;
 
   const btn = document.createElement('a');
-  btn.href = product.link;
   btn.className = 'btn';
-  btn.textContent = 'Bestel via WhatsApp';
 
-  card.append(img,h3,p,prijs,status,btn);
+  if (product.beschikbaar) {
+    btn.href = product.link;
+    btn.textContent = 'Bestel via WhatsApp';
+  } else {
+    btn.textContent = 'Niet beschikbaar';
+    btn.classList.add('disabled');
+  }
+
+  card.appendChild(btn);
   container.appendChild(card);
 });
 </script>
