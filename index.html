@@ -397,7 +397,7 @@ menuToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Scroll met offset (alleen voor interne anchors)
+// Smooth scroll alleen voor interne anchors
 document.querySelectorAll('.nav-links a').forEach(link => {
   const href = link.getAttribute('href');
   if(href.startsWith('#')) {
