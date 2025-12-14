@@ -3,30 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Over ons</title>
+<title>Nieuwe Pagina - Pure Cadeau Box</title>
 
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
-</head>
+<!-- Optioneel: verplaats de CSS naar style.css voor meerdere pagina's -->
+<style>
+:root {
+  --primary: #111;
+  --secondary: #D4AF37;
+  --background: #f6f2ed;
+  --card-bg: #fff;
+}
 
+/* Scroll gedrag */
+html { scroll-padding-top: 70px; scroll-behavior: smooth; }
+body { margin: 0; font-family: 'Lora', serif; background-color: var(--background); color: var(--primary); line-height: 1.7; }
+h1,h2,h3,h4,h5 { font-family: 'Playfair Display', serif; letter-spacing: 1px; margin: 0 0 10px 0; }
+
+/* Navigatie */
+nav { background-color: rgba(246,242,237,0.95); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.nav-container { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
+.logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: bold; }
+.nav-links { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+.nav-links li a { font-family: 'Lora', serif; font-size: 1rem; text-decoration: none; color: var(--primary); font-weight: 600; position: relative; transition: color 0.3s ease; }
+.nav-links li a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: var(--secondary); transition: width 0.3s ease; }
+.nav-links li a:hover::after { width: 100%; }
+.nav-links li a:hover { color: var(--secondary); }
+.menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; }
+
+/* Knoppen */
+.btn { display: inline-block; padding: 14px 28px; border: 1px solid var(--primary); text-decoration: none; color: var(--primary); border-radius: 40px; font-size: 1rem; font-family: 'Lora', serif; background-color: #fff; transition: all 0.3s ease; position: relative; overflow: hidden; }
+.btn:hover { color: #fff; background-color: var(--primary); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+.btn::after { content: ''; position: absolute; width: 0; height: 100%; top: 0; left: 0; background: var(--secondary); opacity: 0.2; transition: width 0.4s ease; border-radius: 40px; }
+.btn:hover::after { width: 100%; }
+
+/* Secties */
+section { padding: 60px 20px; max-width: 1100px; margin: auto; }
+
+/* Footer */
+footer { text-align: center; padding: 30px 20px; font-size: 0.9rem; background: #eee; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links { position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(246,242,237,0.95); flex-direction: column; gap: 20px; padding: 20px; display: none; }
+  .nav-links.active { display: flex; }
+  .menu-toggle { display: block; }
+}
+</style>
+</head>
 <body>
 
-<nav>
+<!-- Navigatie -->
+<nav aria-label="Hoofdmenu">
   <div class="nav-container">
     <div class="logo">Pure Cadeau Box</div>
-    <ul class="nav-links">
+    <button class="menu-toggle" id="mobile-menu">&#9776;</button>
+    <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="overons.html">Over ons</a></li>
       <li><a href="index.html#bestellen">Bestellen</a></li>
       <li><a href="index.html#contact">Contact</a></li>
-      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="index.html#FAQ">FAQ</a></li>
     </ul>
   </div>
 </nav>
 
 <main>
-  
+  <!--content -->
   <section id="over-ons">
   <h2>Over ons</h2>
   <p>
@@ -34,12 +79,21 @@
     Wij geloven dat een klein gebaar een groot verschil kan maken.
   </p>
 </section>
-  
-</main>
 
-<footer>
-  © 2025 Pure Cadeau Box
-</footer>
+<!-- Footer -->
+<footer>© 2025 Pure Cadeau Box</footer>
+
+<!-- Scripts -->
+<script>
+// Mobiele menu toggle
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.getElementById('nav-links');
+menuToggle.addEventListener('click', () => {
+  const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+  menuToggle.setAttribute('aria-expanded', !expanded);
+  navLinks.classList.toggle('active');
+});
+</script>
 
 </body>
 </html>
