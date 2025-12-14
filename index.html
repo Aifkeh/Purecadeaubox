@@ -397,20 +397,25 @@ menuToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Scroll met offset en sluit menu
+// Scroll met offset (alleen voor interne anchors)
 document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href').substring(1);
-    const targetSection = document.getElementById(targetId);
-    const offset = 70;
-    const bodyRect = document.body.getBoundingClientRect().top;
-    const sectionRect = targetSection.getBoundingClientRect().top;
-    const scrollPos = sectionRect - bodyRect - offset;
-    window.scrollTo({ top: scrollPos, behavior: 'smooth' });
-    navLinks.classList.remove('active');
-    menuToggle.setAttribute('aria-expanded', false);
-  });
+  const href = link.getAttribute('href');
+  if(href.startsWith('#')) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetSection = document.getElementById(targetId);
+      if(targetSection) {
+        const offset = 70;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const sectionRect = targetSection.getBoundingClientRect().top;
+        const scrollPos = sectionRect - bodyRect - offset;
+        window.scrollTo({ top: scrollPos, behavior: 'smooth' });
+      }
+      navLinks.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', false);
+    });
+  }
 });
 
 // Bestelformulier via WhatsApp
@@ -457,16 +462,15 @@ producten.forEach(product => {
   status.className = 'product-status ' + (product.beschikbaar ? 'beschikbaar' : 'niet-beschikbaar');
   status.innerHTML = `<span class="bolletje"></span>${product.beschikbaar ? 'Beschikbaar' : 'Niet beschikbaar'}`;
 
-const btn = document.createElement('a');
-btn.className = 'btn';
-
-if (product.beschikbaar) {
-  btn.href = product.link;
-  btn.textContent = 'Bestel via WhatsApp';
-} else {
-  btn.textContent = 'Niet beschikbaar';
-  btn.classList.add('disabled');
-}
+  const btn = document.createElement('a');
+  btn.className = 'btn';
+  if (product.beschikbaar) {
+    btn.href = product.link;
+    btn.textContent = 'Bestel via WhatsApp';
+  } else {
+    btn.textContent = 'Niet beschikbaar';
+    btn.classList.add('disabled');
+  }
 
   card.append(img,h3,p,prijs,status,btn);
   container.appendChild(card);
