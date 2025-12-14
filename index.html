@@ -164,7 +164,17 @@ header p {
   border-radius: 40px;
 }
 .btn:hover::after { width: 100%; }
-
+  
+/* ❗ UITGESCHAKELDE KNOP */
+.btn.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+  
 /* Secties */
 section {
   padding: 60px 20px;
@@ -447,10 +457,16 @@ producten.forEach(product => {
   status.className = 'product-status ' + (product.beschikbaar ? 'beschikbaar' : 'niet-beschikbaar');
   status.innerHTML = `<span class="bolletje"></span>${product.beschikbaar ? 'Beschikbaar' : 'Niet beschikbaar'}`;
 
-  const btn = document.createElement('a');
+const btn = document.createElement('a');
+btn.className = 'btn';
+
+if (product.beschikbaar) {
   btn.href = product.link;
-  btn.className = 'btn';
   btn.textContent = 'Bestel via WhatsApp';
+} else {
+  btn.textContent = 'Niet beschikbaar';
+  btn.classList.add('disabled');
+}
 
   card.append(img,h3,p,prijs,status,btn);
   container.appendChild(card);
